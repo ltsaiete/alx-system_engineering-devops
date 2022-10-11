@@ -1,2 +1,2 @@
 #!/bin/bash
-cat /etc/passwd | grep root --after-contect=3
+cat /etc/passwd | grep root --after-context=3
