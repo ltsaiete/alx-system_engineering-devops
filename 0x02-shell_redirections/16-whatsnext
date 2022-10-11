@@ -1,0 +1,2 @@
+#!/bin/bash
+cat /etc/passwd | grep --after-contect=3 root
