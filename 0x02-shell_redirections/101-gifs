@@ -1,2 +1,2 @@
 #!/bin/bash
-find "$PWD" -iname "*.gif" -execdir basename {} .gif ';' | sort
+find ./*.gif -printf "%f\n" -type f | cut -d '.'  -f 1 |sort
