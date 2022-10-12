@@ -1,2 +1,2 @@
 #!/bin/bash
-ls *.gif | find . -printf "%f\n" -type f | sort
+find "$PWD" -iname "*.gif" -execdir basename {} .gif ';' | sort
