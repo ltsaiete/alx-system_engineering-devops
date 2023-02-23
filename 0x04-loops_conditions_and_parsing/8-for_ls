@@ -5,7 +5,9 @@
 # Where only the part of the name after the first dash is displayed (refer to the example)
 
 
-for file in $(ls -p | grep -v / | grep -v '^\.'); do
-  filename=${file#*-}
-  echo "$filename"
+for file in *; do
+  if [ -f "$file" ] && [[ "$file" != .* ]]; then
+    filename=${file#*-}
+    echo "$filename"
+  fi
 done
