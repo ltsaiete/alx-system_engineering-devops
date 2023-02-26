@@ -9,14 +9,14 @@ case "$1" in
 		;;
 
 	stop)
-		pid=$(cat /var/run/my_process.pid | tail -n 1)
+		pid=$(tail -n 1 < /var/run/my_process.pid)
 		kill "$pid"
 		rm /var/run/my_process.pid
 		echo "manage_my_process stopped"
 		;;
 
 	restart)
-		pid=$(cat /var/run/my_process.pid | tail -n 1)
+		pid=$(tail -n 1 < /var/run/my_process.pid)
 		kill "$pid"
 		rm /var/run/my_process.pid
 
