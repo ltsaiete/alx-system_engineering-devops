@@ -3,4 +3,4 @@
 # Requirements:
 # You cannot use kill or killall
 pid=$(pgrep -f 4-to_infinity_and_beyond)
-pkill -P $pid
+pkill -P "$pid"
