@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+echo $$ > /var/run/myscript.pid
+
+function handle_sigTerm {
+  echo "I hate the kill command"
+}
+
+function handle_sigint {
+	echo "Y U no love me?!"
+}
+
+function handle_sigquit {
+	rm /var/run/myscript.pid
+	exit 0
+}
+
+trap handle_sigTerm SIGTERM
+trap handle_sigint SIGINT
+trap handle_sigquit SIGTERM SIGQUIT
+
+count=1
+while ((count > 0))
+do
+	echo "To infinity and beyond"
+	sleep 2
+done
+
