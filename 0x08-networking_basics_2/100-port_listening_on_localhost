@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# listens on port 98 on localhost.
+nc -l 127.0.0.1 98 | while read _
+do
+	echo "Hello world"
+	echo "test"
+done
