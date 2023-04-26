@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-# displays listening ports:
-netstat -tlnp | awk 'NR>2 {printf "%s\t%s\t%s\n", $4, $7, $NF}'
