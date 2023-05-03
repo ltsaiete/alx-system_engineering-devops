@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# listens on port 98 on localhost.
+# shellcheck disable=SC2034
+nc -l 127.0.0.1 98 | while read -r true
+do
+	# shellcheck disable=SC2034
+	i=1
+done

@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# displays all active IPv4 IPs on the machine it’s executed on.
+
+interfaces=$(ip -4 -o addr show | awk '{print $2}')
+# shellcheck disable=SC2034
+for iterface in $interfaces
+do
+	# shellcheck disable=SC2154
+	ip=$(ip -4 -o addr show "$interface" | awk '{print $4}')
+	echo "$ip"
+done
