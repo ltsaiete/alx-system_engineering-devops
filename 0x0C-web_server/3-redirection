@@ -4,22 +4,22 @@
 apt-get -y update
 apt-get -y install nginx
 ufw allow 'Nginx HTTP'
-echo "<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
-</head>
-<body>
-Hello World!
-</body>
-</html>
+echo "<!DOCTYPE html>\
+<html lang=\"en\">\
+<head>\
+	<meta charset=\"UTF-8\">\
+	<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\
+	<title>Document</title>\
+</head>\
+<body>\
+Hello World!\
+</body>\
+</html>\
 " > /var/www/html/index.html
 
-sed -i '/server_name _;/a\
+sed -i "/server_name _;/a\
 location /redirect_me {\
   return 301 https://youtu.be/JrRwT6_H0xY;\
-}' /etc/nginx/sites-available/default
+}" /etc/nginx/sites-available/default
 
 service nginx restart
