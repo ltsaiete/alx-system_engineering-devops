@@ -17,7 +17,7 @@ Hello World!\
 </html>\
 " > /var/www/html/index.html
 
-sed -i "/server_name _;/a\
+sed -i "s/server_name _;/\
 location /redirect_me {\
   return 301 https://youtu.be/JrRwT6_H0xY;\
 }" /etc/nginx/sites-available/default
