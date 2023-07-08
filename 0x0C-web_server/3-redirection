@@ -1,23 +1,34 @@
 #!/usr/bin/env bash
 # Configure your Nginx so that /redirect_me is redirecting to another page.
 
-sudo apt update
-sudo apt install -y nginx
-sudo ufw allow 'Nginx HTTP'
-echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html
+apt-get -y update
+apt-get -y install nginx
+ufw allow 'Nginx HTTP'
+echo "<!DOCTYPE html>\
+<html lang=\"en\">\
+<head>\
+	<title>Document</title>\
+</head>\
+<body>\
+Hello World!\
+</body>\
+</html>\
+" > /var/www/html/index.html
 
-echo "server {
-  listen 80;
-  listen [::]:80 default_server;
+sed -i "/index index.html index.htm index.nginx-debian.html;/d\
+" /etc/nginx/sites-available/
 
+sed -i "/root\ /var/www/html;/d\
+" /etc/nginx/sites-available/default
 
-  root /var/www/html;
-  index index.html;
+sed -i "/server_name _;/a\
+location /redirect_me {\
+  return 301 https://youtu.be/JrRwT6_H0xY;\
+}" /etc/nginx/sites-available/default
 
-  location /redirect_me {
-    return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
-  }
-}" > default
+sed -i "/location / {/a\
+root /var/www/html;\
+index index.html index.htm index.nginx-debian.html;\
+" /etc/nginx/sites-available/default
 
-sudo mv -f default /etc/nginx/sites-available/default
-sudo service nginx restart
+service nginx restart
