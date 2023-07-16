@@ -18,13 +18,11 @@ Hello World!\n
 " > /var/www/html/index.html
 
 echo -e "<!DOCTYPE html>\n
-<html lang=\"en\">\n
+<html>\n
 <head>\n
 	<title>Document</title>\n
 </head>\n
-<body>\n
-Ceci n'est pas une page\n
-</body>\n
+<body>Ceci n'est pas une page</body>\n
 </html>\n
 " > /var/www/html/404.html
 
