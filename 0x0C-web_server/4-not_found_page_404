@@ -6,50 +6,49 @@ apt-get -y update
 apt-get -y install nginx
 ufw allow 'Nginx HTTP'
 
-echo "<!DOCTYPE html>\
-<html lang=\"en\">\
-<head>\
-	<title>Document</title>\
-</head>\
-<body>\
-Hello World!\
-</body>\
-</html>\
+echo -e "<!DOCTYPE html>\n
+<html lang=\"en\">\n
+<head>\n
+	<title>Document</title>\n
+</head>\n
+<body>\n
+Hello World!\n
+</body>\n
+</html>\n
 " > /var/www/html/index.html
 
-echo "<!DOCTYPE html>\
-<html lang=\"en\">\
-<head>\
-	<title>Document</title>\
-</head>\
-<body>\
-Ceci n'est pas une page\
-</body>\
-</html>\
+echo -e "<!DOCTYPE html>\n
+<html lang=\"en\">\n
+<head>\n
+	<title>Document</title>\n
+</head>\n
+<body>\n
+Ceci n'est pas une page\n
+</body>\n
+</html>\n
 " > /var/www/html/404.html
 
-echo "server {
-  listen 80 default_server;
-  listen [::]:80 default_server;
-
-  server_name saiete.tech;
-
-  location /redirect_me {
-    return 301 https://youtu.be/JrRwT6_H0xY;
-	}
-
-	location / {
-    root /var/www/html;
-    index index.html index.htm index.nginx-debian.html;
-  }
-
-  error_page 404 /404.html;
-	location = /404.html {
-    root /var/www/html/404.html;
-    internal;
-  }
+echo -e "server {\n
+  listen 80 default_server;\n
+  listen [::]:80 default_server;\n
+\n
+  server_name saiete.tech;\n
+\n
+  location /redirect_me {\n
+    return 301 https://youtu.be/JrRwT6_H0xY;\n
+	}\n
+\n
+	location / {\n
+    root /var/www/html;\n
+    index index.html index.htm index.nginx-debian.html;\n
+  }\n
+\n
+  error_page 404 /404.html;\n
+	location = /404.html {\n
+    root /var/www/html;\n
+    internal;\n
+  }\n
 }
-
 " > /etc/nginx/sites-available/default
 
 service nginx restart
