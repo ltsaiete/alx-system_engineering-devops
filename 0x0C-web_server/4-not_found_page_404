@@ -40,12 +40,12 @@ echo "server {
 
 	location / {
     root /var/www/html;
-    index.html index index.htm index.nginx-debian.html;
+    index index.html index.htm index.nginx-debian.html;
   }
 
   error_page 404 /404.html;
 	location = /404.html {
-    root /var/www/html;
+    root /var/www/html/404.html;
     internal;
   }
 }
