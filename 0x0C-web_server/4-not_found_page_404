@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+# Configure your Nginx so that /redirect_me is redirecting to another page.
+# Configure your Nginx server to have a custom 404 page.
+
+apt-get -y update
+apt-get -y install nginx
+ufw allow 'Nginx HTTP'
+
+echo "<!DOCTYPE html>\
+<html lang=\"en\">\
+<head>\
+	<title>Document</title>\
+</head>\
+<body>\
+Hello World!\
+</body>\
+</html>\
+" > /var/www/html/index.html
+
+echo "<!DOCTYPE html>\
+<html lang=\"en\">\
+<head>\
+	<title>Document</title>\
+</head>\
+<body>\
+Ceci n'est pas une page\
+</body>\
+</html>\
+" > /var/www/html/404.html
+
+echo "server {
+  listen 80 default_server;
+  listen [::]:80 default_server;
+
+  server_name saiete.tech;
+
+  location /redirect_me {
+    return 301 https://youtu.be/JrRwT6_H0xY;
+	}
+
+	location / {
+    root /var/www/html;
+    index.html index index.htm index.nginx-debian.html;
+  }
+
+  error_page 404 /404.html;
+	location = /404.html {
+    root /var/www/html;
+    internal;
+  }
+}
+
+" > /etc/nginx/sites-available/default
+
+service nginx restart
