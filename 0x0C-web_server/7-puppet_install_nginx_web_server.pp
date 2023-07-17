@@ -1,35 +1,25 @@
 # configure an Nginx server using Puppet
 
-exec { 'install_puppet_nginx_module':
-  command     => 'puppet module install puppet-nginx',
-  path        => '/usr/local/bin:/usr/bin:/bin',
-  unless      => 'puppet module list --modulepath /etc/puppetlabs/code/modules\
-   | grep puppet-nginx',
-  require     => Class['puppet_agent'],
-  refreshonly => true,
+exec { 'apt-get-update':
+  command => '/usr/bin/apt-get update',
 }
 
-class { 'nginx':
+package { 'nginx':
+  ensure  => installed,
+  require => Exec['apt-get-update'],
 }
 
 file { '/var/www/html/index.html':
-  ensure  => 'file',
-  path    => '/var/www/html/index.html',
-  content => '<html>
-<head>
-  <title>Document</title>
-</head>
-<body>Hello World!</body>
-</html>',
+  content => 'Hello World!',
+  require => Package['nginx'],
 }
 
-nginx::resource { 'default':
-  port => 80
+exec {'redirect_me':
+  command  => 'sed -i "24i\	rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;" /etc/nginx/sites-available/default',
+  provider => 'shell'
 }
 
-nginx::resource { 'redirection':
-  location => '/redirect_me',
-  www_root => '/var/www/html/',
-  index    => 'index.html',
-  rewrite  => '^/redirect_me https://youtu.be/F1RrJ7DfDMg permanent',
+service { 'nginx':
+  ensure  => running,
+  require => Package['nginx'],
 }
