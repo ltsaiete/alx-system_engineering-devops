@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+container_id=$(docker ps -q filter "ancestor=holbertonschool/265-0")
+docker exec -it $container_id bash
+service apache2 start
