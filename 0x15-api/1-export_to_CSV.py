@@ -9,7 +9,6 @@ import sys
 
 if len(sys.argv) > 1:
     id = sys.argv[1]
-
     r = requests.get(f'https://jsonplaceholder.typicode.com/todos?userId={id}')
     todos = r.json()
     r = requests.get(f'https://jsonplaceholder.typicode.com/users/{id}')
