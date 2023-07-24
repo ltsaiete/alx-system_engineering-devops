@@ -16,6 +16,6 @@ if len(sys.argv) > 1:
 
     with open(f'{id}.csv', 'w') as f:
         writer = csv.writer(f)
-        row = [str(id), user["username"], todo["completed"], todo["title"]]
         for todo in todos:
+            row = [str(id), user["username"], todo["completed"], todo["title"]]
             writer.writerow(row)
