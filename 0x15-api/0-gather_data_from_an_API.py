@@ -24,4 +24,4 @@ if len(sys.argv) > 1:
 
     for todo in todos:
         if todo['completed']:
-            print(f'\t{todo["title"]}')
+            print(f'\t {todo["title"]}')
