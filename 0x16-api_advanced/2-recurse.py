@@ -40,7 +40,6 @@ def get_posts(url, hot_list=[], after=None):
 
     if r.status_code == 200:
         hot_list.extend(get_titles(r.json()['data']['children']))
-        print(hot_list)
         if r.json()['data']['dist'] == 25:
             return get_posts(url, hot_list, r.json()['data']['after'])
 
