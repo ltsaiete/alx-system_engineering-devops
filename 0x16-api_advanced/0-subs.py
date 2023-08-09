@@ -1,5 +1,8 @@
 #!/usr/bin/python3
-
+"""
+This is a simple module and it only has
+one function called number_of_subscribers
+"""
 import requests
 
 
@@ -17,5 +20,5 @@ def number_of_subscribers(subreddit):
     if r.status_code == 200:
         subs_count = r.json()['data']['subscribers']
         return subs_count
-    
+
     return 0
