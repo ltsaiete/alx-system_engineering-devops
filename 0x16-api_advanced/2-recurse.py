@@ -42,6 +42,8 @@ def get_posts(url, hot_list=[], after=None):
         hot_list.extend(get_titles(r.json()['data']['children']))
         if r.json()['data']['dist'] == 25:
             return get_posts(url, hot_list, r.json()['data']['after'])
+    else:
+        return None
 
     return hot_list
 
