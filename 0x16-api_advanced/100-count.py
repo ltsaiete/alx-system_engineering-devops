@@ -39,13 +39,6 @@ def count_words(subreddit, word_list):
     for k, v in sorted_items:
         print(f'{k}: {v}')
 
-    # for post in posts:
-    #     for word in word_list:
-    #         if not word in post:
-    #             continue
-    #         print(word)
-    #         print(post)
-
 
 def get_titles(posts):
     """Extract the titles of the posts
