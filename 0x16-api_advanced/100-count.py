@@ -24,7 +24,7 @@ def count_words(subreddit, word_list):
 
     for word in posts_words:
         if word in word_list:
-            if not word in count_dict:
+            if word not in count_dict:
                 count_dict[word] = 0
             for w in word_list:
                 if w == word:
