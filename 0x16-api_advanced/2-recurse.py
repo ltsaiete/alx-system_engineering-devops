@@ -32,10 +32,6 @@ def get_posts(url, hot_list=[], after=None):
         _type_: _description_
     """
     headers = {'User-Agent': 'Reddit API calls by Lewis'}
-
-    # if len(hot_list) == 0 and after is None:
-    #     r = requests.get(url, headers=headers)
-    # else:
     r = requests.get(url, headers=headers, allow_redirects=False,
                      params={"after": after})
 
