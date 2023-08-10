@@ -33,15 +33,17 @@ def get_posts(url, hot_list=[], after=None):
     """
     headers = {'User-Agent': 'Reddit API calls by Lewis'}
 
-    if len(hot_list) == 0 and after is None:
-        r = requests.get(url, headers=headers)
-    else:
-        r = requests.get(f'{url}?after={after}', headers=headers)
+    # if len(hot_list) == 0 and after is None:
+    #     r = requests.get(url, headers=headers)
+    # else:
+    r = requests.get(url, headers=headers, allow_redirects=False,
+                     params={"after": after})
 
     if r.status_code == 200:
         hot_list.extend(get_titles(r.json()['data']['children']))
-        if r.json()['data']['after'] is not None:
-            return get_posts(url, hot_list, r.json()['data']['after'])
+        after = r.json()['data']['after']
+        if after is not None:
+            return get_posts(url, hot_list, after)
     else:
         return None
 
