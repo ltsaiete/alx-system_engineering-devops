@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-"""
-This is a simple module and it only has
+
+"""This is a simple module and it only has
 one function called count_words
 """
 import requests
