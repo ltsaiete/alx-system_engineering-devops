@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# transfers a file from our client to a server
+
+if (("$#" >= 3)); then
+	path="$1"
+	ip="$2"
+	user="$3"
+	key="$4"
+
+	scp -i "$key" -o "StrictHostKeyChecking=no" "$path" "$user"@"$ip":~
+else
+	echo "Usage: 0-transfer_file PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY"
+fi
+
