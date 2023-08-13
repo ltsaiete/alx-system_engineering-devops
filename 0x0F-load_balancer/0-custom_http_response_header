@@ -6,6 +6,8 @@ apt-get -y update
 apt-get -y install nginx
 ufw allow 'Nginx HTTP'
 
+host=$HOSTNAME
+
 echo -e "<!DOCTYPE html>\n
 <html lang=\"en\">\n
 <head>\n
@@ -26,13 +28,13 @@ echo -e "<!DOCTYPE html>\n
 </html>\n
 " > /var/www/html/404.html
 
-echo -e 'server {\n
+echo -e "server {\n
   listen 80 default_server;\n
   listen [::]:80 default_server;\n
 \n
   server_name saiete.tech;\n
 
-  add_header X-Served-By "171103-web-01";\n
+  add_header X-Served-By $host;\n
 
   location /redirect_me {\n
     return 301 https://youtu.be/JrRwT6_H0xY;\n
@@ -49,6 +51,6 @@ echo -e 'server {\n
     internal;\n
   }\n
 }
-' > /etc/nginx/sites-available/default
+" > /etc/nginx/sites-available/default
 
 service nginx reload
