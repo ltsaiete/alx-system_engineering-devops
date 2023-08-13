@@ -32,7 +32,7 @@ echo -e 'server {\n
 \n
   server_name saiete.tech;\n
 
-  add_header X-Served-By "web-02";\n
+  add_header X-Served-By "171103-web-01";\n
 
   location /redirect_me {\n
     return 301 https://youtu.be/JrRwT6_H0xY;\n
