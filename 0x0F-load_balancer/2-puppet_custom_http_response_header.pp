@@ -1,6 +1,7 @@
 # configure an Nginx server using Puppet
 # Configure your Nginx server to have a custom response header
 
+
 exec { 'apt-get-update':
   command => '/usr/bin/apt-get update',
 }
