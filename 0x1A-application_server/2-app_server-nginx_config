@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# configure Nginx to serve your page from the route /airbnb-onepage/
+
+printf "server {
+  listen 80;
+  server_name 54.84.66.149;
+	location / {
+    include proxy_params;
+    proxy_pass http://127.0.0.1:5000;
+  }
+}" > /etc/nginx/sites-available/web_flask
+
+ln -s /etc/nginx/sites-available/web_flask /etc/nginx/sites-enabled
+
+nginx -t
+
+sudo service nginx restart
