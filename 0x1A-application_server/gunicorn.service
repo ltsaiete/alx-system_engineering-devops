@@ -1,0 +1,9 @@
+[Unit]
+Description=starts Gunicorn
+After=network.target
+
+[Service]
+ExecStart=/startApps.sh
+
+[Install]
+WantedBy=multi.user.target
