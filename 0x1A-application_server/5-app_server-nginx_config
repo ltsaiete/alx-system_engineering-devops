@@ -4,12 +4,29 @@
 printf "server {
   listen 80;
   server_name 54.84.66.149;
-  
+
 	location /airbnb-onepage {
     include proxy_params;
     proxy_pass http://127.0.0.1:5000;
   }
+
+	location /airbnb-dynamic {
+    include proxy_params;
+    proxy_pass http://127.0.0.1:5001;
+  }
+
+	location /api {
+    include proxy_params;
+    proxy_pass http://127.0.0.1:5002;
+  }
+
+	location / {
+    include proxy_params;
+    proxy_pass http://127.0.0.1:5003;
+  }
 }" > /etc/nginx/sites-available/web_flask
+
+rm /etc/nginx/sites-enabled/web_flask
 
 ln -s /etc/nginx/sites-available/web_flask /etc/nginx/sites-enabled
 
